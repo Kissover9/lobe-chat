@@ -6,19 +6,16 @@ export const generateMetadata = async (): Promise<Metadata> => {
   const url = 'https://www.one1.my';
 
   return {
-    title: {
-      default: title,
-      template: `%s · ${title}`,
-    },
+    title: { default: title, template: `%s · ${title}` },
     description: desc,
-    metadataBase: new URL(url),
     applicationName: title,
+    metadataBase: new URL(url),
     openGraph: {
       title,
       description: desc,
       url,
       siteName: title,
-      images: ['/og.png'], // 可换成你的图
+      images: ['/og.png'],         // 确保 /public/og.png 存在
       type: 'website',
     },
     twitter: {
@@ -29,12 +26,15 @@ export const generateMetadata = async (): Promise<Metadata> => {
     },
     icons: {
       icon: '/favicon.ico',
-      shortcut: '/favicon.ico',
+      shortcut: '/favicon.ico',    // ← 修正
       apple: '/apple-touch-icon.png',
       other: [
         { rel: 'icon', url: '/icons/icon-192x192.png', sizes: '192x192' },
         { rel: 'icon', url: '/icons/icon-512x512.png', sizes: '512x512' },
       ],
     },
+    // 可选：canonical/manifest
+    // alternates: { canonical: url },
+    // manifest: '/manifest.webmanifest',
   };
 };
